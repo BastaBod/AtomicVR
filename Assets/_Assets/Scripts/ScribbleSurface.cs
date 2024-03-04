@@ -42,7 +42,7 @@ public class ScribbleSurface : MonoBehaviour
     {
         touchPoint.transform.position = pos;
         Vector3 newpos = touchPoint.transform.localPosition;
-        ClientManager.instance.SendTcpMessage("3;"+newpos.x+";"+newpos.y);
+        ClientManager.instance.SendTcpMessage("3;"+(int)(newpos.x*200)+";"+(int)(newpos.y*200));
         //Debug.Log("la pos du pen = " + touchPoint.transform.localPosition);
     }
 
