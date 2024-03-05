@@ -44,6 +44,7 @@ public class Collision : MonoBehaviour
         {
             // Destroy the target GameObject
             Destroy(target);
+            Object.Destroy(gameObject);
         }
     }
 }
