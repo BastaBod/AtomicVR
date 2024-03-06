@@ -10,7 +10,10 @@ public class Collision : MonoBehaviour
     public float explosionPower;
     public LayerMask explosionLayers;
     public float despawnTimer;
-
+    private Transform rootParent;
+    [SerializeField]
+    private DESTROY destroyInstance;
+   
     private void OnCollisionEnter(UnityEngine.Collision col)
     {
         destroy(col.contacts[0].point);
@@ -19,11 +22,13 @@ public class Collision : MonoBehaviour
     public void destroy(Vector3 explosionPoint)
     {
         hitColliders = Physics.OverlapSphere(explosionPoint, blastRadius, explosionLayers);
-
+      
         foreach (Collider hitCol in hitColliders)
         {
             if (hitCol.GetComponent<Rigidbody>() == null)
             {
+                rootParent = hitCol.GetComponent<Transform>().root;
+                rootParent.GetComponent<DESTROY>().hitProjectiles += 1;
                 hitCol.GetComponent<MeshRenderer>().enabled = true;
                 hitCol.gameObject.AddComponent<Rigidbody>();
                 hitCol.GetComponent<Rigidbody>().mass = 500;
@@ -44,7 +49,6 @@ public class Collision : MonoBehaviour
         {
             // Destroy the target GameObject
             Destroy(target);
-            Object.Destroy(gameObject);
         }
     }
 }
