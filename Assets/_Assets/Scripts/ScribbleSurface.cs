@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScribbleSurface : MonoBehaviour
 {
-    public GameObject touchPoint;
+    public GameObject touchPoint, cursor;
     private bool isDrawing;
 
     // Start is called before the first frame update
@@ -53,5 +53,10 @@ public class ScribbleSurface : MonoBehaviour
     public Vector2 GetTouchPosNormalized()
     {
         return new Vector2 (touchPoint.transform.localPosition.x*2, touchPoint.transform.localPosition.y*2);
+    }
+
+    public void MoveCursor(Vector2 pos)
+    {
+        cursor.transform.position = new Vector3(pos.x, pos.y, 0);
     }
 }

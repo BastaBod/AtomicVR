@@ -5,6 +5,13 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
 
+
+
+	[SerializeField]
+	private GameObject[] Equipments;
+	[SerializeField]
+	private GameObject EquipmentPos;
+
 	[SerializeField]
 	private GameObject[] spawnPoses, flyPos;
 	[SerializeField]
@@ -65,6 +72,12 @@ public class EnemySpawner : MonoBehaviour
         {
 			//GpsTridi.instance.SetTarget(enemyList[0]);
 		}
+	}
+
+
+	public void SpawnEquipment(int ID)
+    {
+		Instantiate(Equipments[ID], EquipmentPos.transform);
 	}
 	
 	
