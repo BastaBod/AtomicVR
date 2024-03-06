@@ -9,11 +9,9 @@ using UnityEngine.Events;
 
 public class TestSync : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI feedbackText;
 
-    public UnityEvent ReconnectedFalcon;
-    public UnityEvent f1, f2, f3, f4, f5;
+    public UnityEvent falconConnected, falconCanDraw, falconOccupied, falconCursorPos;
+    public UnityEvent pcConnected, Received1, Received2;
 
 
     private void OnEnable()
@@ -34,30 +32,29 @@ public class TestSync : MonoBehaviour
 
         switch (code)
         {
-            case 1:
-                ReconnectedFalcon.Invoke();
-                if (feedbackText)
-                    feedbackText.text = "Connection etablished";
+            case 1: // falcon connected
+                falconConnected.Invoke();
                 break;
-            case 2: //start draw
-                f2.Invoke();
+            case 2: // falcon ready to draw
+                falconCanDraw.Invoke();
                 break;
-            case 3: //draw
-                int x, z;
-                if (msg.Split(';').Length != 3)
-                    return;
+            case 3: // falcon occupied
+                falconOccupied.Invoke();
                 break;
-            case 4: // pause draw
-                f2.Invoke();
+            case 4: // falcon current cursor position
+                falconCursorPos.Invoke();
                 break;
-            case 5: // end
-                f3.Invoke();
+
+                //...
+
+            case 10: // pc connected
+                pcConnected.Invoke();
                 break;
-            case 14:
-                f4.Invoke();
+            case 11: // pc receive file_01
+                Received1.Invoke();
                 break;
-            case 15:
-                f5.Invoke();
+            case 12: // pc receive file_02
+                Received2.Invoke();
                 break;
         }
     }

@@ -9,7 +9,7 @@ using System.IO;
 
 public enum ConnectionType
 {
-    SERVER, 
+    SERVER,
     CLIENT
 }
 
@@ -17,7 +17,7 @@ public class ServerHandler : MonoBehaviour
 {
     public String Host = "localhost";
     public Int32 Port = 55000;
-    public int codeToSend;
+    //public int codeToSend;
     public bool starOnAwake = false;
 
     private TcpListener listener = null;
@@ -29,7 +29,9 @@ public class ServerHandler : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.None;
         started = false;
+        client = null;
         if (starOnAwake)
             StartHost();
     }
@@ -42,10 +44,11 @@ public class ServerHandler : MonoBehaviour
 
         if (client == null)
         {
+            //Debug.Log(" - "+listener.Pending());
             if (listener.Pending())
             {
                 client = listener.AcceptTcpClient();
-                Debug.Log("Connected");
+                Debug.Log("Connected !");
             }
             else
             {
@@ -62,7 +65,7 @@ public class ServerHandler : MonoBehaviour
     {
         ns = client.GetStream();
 
-        if((ns != null) && (ns.DataAvailable))
+        if ((ns != null) && (ns.DataAvailable))
         {
             StreamReader reader = new StreamReader(ns);
             string msg = reader.ReadLine();
@@ -78,7 +81,7 @@ public class ServerHandler : MonoBehaviour
 
         Byte[] sendBytes = System.Text.Encoding.UTF8.GetBytes(code + "\n");
         Debug.Log("Sending : " + code);
-        if(client.Connected)
+        if (client.Connected)
         {
             client.GetStream().Write(sendBytes, 0, sendBytes.Length);
             Debug.Log("Sent");
@@ -105,9 +108,10 @@ public class ServerHandler : MonoBehaviour
     public void StartHost()
     {
         Debug.Log("dns" + Dns.GetHostEntry(Host).AddressList[1]);
-        listener = new TcpListener(Dns.GetHostEntry(Host).AddressList[1], Port);
+        listener = new TcpListener(IPAddress.Parse(Host), Port);
         listener.Start();
-        Debug.Log("is listening");
+        //listener.BeginAcceptSocket(new AsyncCallback(HandleClientConnection), null);
+        Debug.Log("is listening on " + IPAddress.Parse(Host) + " : " + Port);
 
         if (listener.Pending())
         {
