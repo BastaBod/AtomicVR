@@ -16,7 +16,8 @@ public class AutoReturn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ResetPos();
+
     }
 
     // Update is called once per frame
@@ -29,11 +30,13 @@ public class AutoReturn : MonoBehaviour
                 ResetPos();
         }
 
-        if (Vector3.Distance(transform.position, origin.transform.position) > 1)
-            ResetPos();
+        //if (Vector3.Distance(transform.position, origin.transform.position) > 1)
+        //    ResetPos();
 
-        if (me.GrabPoints.Count > 1)
+        if (me.GrabPoints.Count >= 1)
+        {
             grabbed = true;
+        }
 
         if (me.GrabPoints.Count < 1 && grabbed)
         {

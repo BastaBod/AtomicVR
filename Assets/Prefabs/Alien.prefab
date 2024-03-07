@@ -2550,8 +2550,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 815571991123451760}
-  - component: {fileID: 3202787727827139904}
   - component: {fileID: 2936096692875957850}
+  - component: {fileID: 3202787727827139904}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Untagged
@@ -2620,18 +2620,6 @@ Transform:
   - {fileID: 8052540575101153257}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3202787727827139904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5046630787617819939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d825df1caa83640ab15b6b412c9fc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &2936096692875957850
 Animator:
   serializedVersion: 5
@@ -2653,6 +2641,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3202787727827139904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5046630787617819939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d825df1caa83640ab15b6b412c9fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitProjectiles: 0
 --- !u!1 &5170624816217779956
 GameObject:
   m_ObjectHideFlags: 0

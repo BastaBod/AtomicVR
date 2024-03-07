@@ -9,11 +9,11 @@ using UnityEngine.Events;
 
 public class TestSync : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI feedbackText;
 
-    public UnityEvent ReconnectedFalcon;
-    public UnityEvent f1, f2, f3, f4, f5;
+    public UnityEvent falconConnected, falconCanDraw, falconOccupied;
+    public UnityEvent<Vector3> falconCursorPos;
+    public UnityEvent pcConnected, Received1, Received2, Received3;
+    public UnityEvent<int> GiveItem1, GiveItem2, GiveItem3, GiveItem4;
 
 
     private void OnEnable()
@@ -34,30 +34,57 @@ public class TestSync : MonoBehaviour
 
         switch (code)
         {
-            case 1:
-                ReconnectedFalcon.Invoke();
-                if (feedbackText)
-                    feedbackText.text = "Connection etablished";
+            case 1: // falcon connected
+                falconConnected.Invoke();
                 break;
-            case 2: //start draw
-                f2.Invoke();
+            case 2: // falcon ready to draw
+                falconCanDraw.Invoke();
                 break;
-            case 3: //draw
-                int x, z;
+            case 3: // falcon occupied
+                falconOccupied.Invoke();
+                break;
+            case 4: // falcon current cursor position
+                int x, y;
                 if (msg.Split(';').Length != 3)
+                {
+                    Debug.Log("wrong message");
                     return;
+                }
+                if (int.TryParse(msg.Split(';')[1], out x) && int.TryParse(msg.Split(';')[2], out y))
+                {
+                    falconCursorPos.Invoke(new Vector2(1.5f*x,y));
+                    Debug.Log("Cursor goes to x : " + new Vector2(x,y));
+                }
                 break;
-            case 4: // pause draw
-                f2.Invoke();
+
+                //...
+
+            case 10: // pc connected
+                pcConnected.Invoke();
                 break;
-            case 5: // end
-                f3.Invoke();
+            case 11: // pc receive file_01
+                Received1.Invoke();
                 break;
-            case 14:
-                f4.Invoke();
+            case 12: // pc receive file_02
+                Received2.Invoke();
                 break;
-            case 15:
-                f5.Invoke();
+            case 13: // pc receive file_03
+                Received3.Invoke();
+                break;
+
+
+
+            case 21: // pc receive item 1
+                GiveItem1.Invoke(1);
+                break;
+            case 22: // pc receive item 2
+                GiveItem2.Invoke(2);
+                break;
+            case 23: // pc receive item 3
+                GiveItem3.Invoke(3);
+                break;
+            case 24: // pc receive item 4
+                GiveItem4.Invoke(3);
                 break;
         }
     }
