@@ -22,7 +22,11 @@ public class Destruction : MonoBehaviour
         //gameObject.GetComponent<MeshRenderer>().enabled = false;
         mesh.gameObject.GetComponent<Transform>().localScale = new Vector3(cubeScale, cubeScale, cubeScale);
         CreateCube();
+
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
     }
+
+
     public void AutoDestroy(Vector3 explosionPoint)
     {
 
@@ -42,6 +46,7 @@ public class Destruction : MonoBehaviour
             }
         }
     }
+
 
     private IEnumerator DestroyAfterDelay(GameObject target, float delay)
     {

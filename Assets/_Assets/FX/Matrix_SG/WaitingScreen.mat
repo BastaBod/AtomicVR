@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseColor:
-        m_Texture: {fileID: 2800000, guid: 0f8fe14cc10516e47948edbab75b4943, type: 3}
+        m_Texture: {fileID: 2800000, guid: 59190cb1e816fde4fa749513c839ccf1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive:
@@ -79,7 +79,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CutOffHeight: -1008.3832
+    - _CutOffHeight: 1003.7212
     - _EdgeWidth: 0.01
     - _NoiseStrenght: 500
     - _Noise_Scale: 54.2

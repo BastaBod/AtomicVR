@@ -6,6 +6,7 @@ public class ScribbleSurface : MonoBehaviour
 {
     public GameObject touchPoint, cursor;
     private bool isDrawing;
+    public ClientManager clientFalcon;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,8 @@ public class ScribbleSurface : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (isDrawing)
+            isDrawing = true;
     }
 
 
@@ -45,8 +47,8 @@ public class ScribbleSurface : MonoBehaviour
     {
         touchPoint.transform.position = pos;
         Vector3 newpos = touchPoint.transform.localPosition;
-        if(ClientManager.instance != null)
-            ClientManager.instance.SendTcpMessage("3;"+(int)(newpos.x*200)+";"+(int)(newpos.y*200));
+        if(clientFalcon != null)
+            clientFalcon.SendTcpMessage("3;"+(int)(newpos.x*200)+";"+(int)(newpos.y*200));
         //Debug.Log("la pos du pen = " + touchPoint.transform.localPosition);
     }
 

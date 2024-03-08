@@ -13,22 +13,34 @@ public class Collision : MonoBehaviour
     private Transform rootParent;
     [SerializeField]
     private DESTROY destroyInstance;
-   
+
+
+
     private void OnCollisionEnter(UnityEngine.Collision col)
     {
         destroy(col.contacts[0].point);
     }
-   
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("AZAAAZAZAZAZAZAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        destroy(transform.position);
+    }
+
     public void destroy(Vector3 explosionPoint)
     {
         hitColliders = Physics.OverlapSphere(explosionPoint, blastRadius, explosionLayers);
-      
+
+        if (hitColliders.Length == 0)
+            return;
+
         foreach (Collider hitCol in hitColliders)
         {
             if (hitCol.GetComponent<Rigidbody>() == null)
             {
                 rootParent = hitCol.GetComponent<Transform>().root;
-                rootParent.GetComponent<DESTROY>().hitProjectiles += 1;
+                if(rootParent.GetComponent<DESTROY>() != null)
+                    rootParent.GetComponent<DESTROY>().hitProjectiles += 1;
                 hitCol.GetComponent<MeshRenderer>().enabled = true;
                 hitCol.gameObject.AddComponent<Rigidbody>();
                 hitCol.GetComponent<Rigidbody>().mass = 500;
@@ -40,6 +52,9 @@ public class Collision : MonoBehaviour
             }
         }
     }
+
+
+
     private IEnumerator DestroyAfterDelay(GameObject target, float delay)
     {
         yield return new WaitForSeconds(delay);

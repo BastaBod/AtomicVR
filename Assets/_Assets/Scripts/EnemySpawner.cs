@@ -77,6 +77,7 @@ public class EnemySpawner : MonoBehaviour
 
 	public void SpawnEquipment(int ID)
     {
+		if(ID < Equipments.Length)
 		Instantiate(Equipments[ID], EquipmentPos.transform);
 	}
 	

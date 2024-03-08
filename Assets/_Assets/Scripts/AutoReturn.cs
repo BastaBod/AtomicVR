@@ -49,7 +49,7 @@ public class AutoReturn : MonoBehaviour
 
     private void ResetPos()
     {
-        transform.parent.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        //transform.parent.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         transform.parent.position = origin.transform.position;
         transform.parent.rotation = origin.transform.rotation;
         isOrigin = true;

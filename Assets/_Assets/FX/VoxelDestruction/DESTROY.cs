@@ -26,6 +26,10 @@ public class DESTROY : MonoBehaviour
                 easeHealthBar.value = Mathf.Lerp(easeHealthBar.value,healthBar.value,0.025f);
             }
         }
+        if (Input.GetKeyDown("o"))
+        {
+            PasStart();
+        }
         if (hitProjectiles >= life)
         {
             PasStart();

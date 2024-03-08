@@ -46,7 +46,7 @@ public class ClientManager : MonoBehaviour
         {
             mySocket.Connect(Host, Port);
             //Debug.Log(" - "+mySocket.Available);
-            SendTcpMessage("3;1;1");
+            //SendTcpMessage("3;1;1");
         }
         catch (Exception e)
         {
