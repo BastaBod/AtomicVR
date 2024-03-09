@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destruction : MonoBehaviour
+public class PixelDestroy : MonoBehaviour
 {
     public GameObject mesh;
+    [Range(2,5)]
+    public int subdivLevel = 2;
+    private float scaling;
 
     float cubeWidth;
     float cubeHeight;
@@ -15,13 +18,15 @@ public class Destruction : MonoBehaviour
 
     void Start()
     {
+        scaling = 1 / (float)subdivLevel;
+
         cubeWidth = transform.localScale.z;
         cubeHeight = transform.localScale.y;
         cubeDepth = transform.localScale.x;
 
         //gameObject.GetComponent<MeshRenderer>().enabled = false;
-        mesh.gameObject.GetComponent<Transform>().localScale = new Vector3(cubeScale, cubeScale, cubeScale);
-        CreateCube();
+        //mesh.gameObject.GetComponent<Transform>().localScale = new Vector3(cubeScale, cubeScale, cubeScale);
+        //CreateCube();
 
         gameObject.GetComponent<MeshRenderer>().enabled = false;
     }
@@ -52,7 +57,6 @@ public class Destruction : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // Make sure the target still exists before attempting to destroy it
         if (target != null)
         {
             // Destroy the target GameObject
@@ -60,24 +64,25 @@ public class Destruction : MonoBehaviour
         }
     }
 
-    void CreateCube()
+    void CreateCube(PixelMonster monster)
     {
         this.gameObject.GetComponent<BoxCollider>().enabled = false;
-       // this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        // this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        subdivLevel = monster.GetSubdivLevel();
+        scaling = 1 / (float)subdivLevel;
 
         if (gameObject.CompareTag("box"))
         {
-            for (float x = 0; x < cubeWidth; x += cubeScale)
+            for (float x = 0; x < subdivLevel; x ++)
             {
-                for (float y = 0; y < cubeHeight; y += cubeScale)
+                for (float y = 0; y < subdivLevel; y ++)
                 {
-                    for (float z = 0; z < cubeDepth; z += cubeScale)
+                    for (float z = 0; z < subdivLevel; z ++)
                     {
-                        Vector3 vec = transform.position;
-
-                        GameObject cubes = (GameObject)Instantiate(mesh, vec + new Vector3(x, y, z), Quaternion.identity);
-                        cubes.gameObject.GetComponent<MeshRenderer>().materials = gameObject.GetComponent<MeshRenderer>().materials;
+                        GameObject cubes = (GameObject)Instantiate(mesh, transform.position, Quaternion.identity);
                         cubes.transform.SetParent(this.gameObject.transform);
+                        cubes.transform.localScale = new Vector3(scaling, scaling, scaling);
+                        cubes.transform.localPosition = -0.5f * transform.localScale + 0.5f * new Vector3(scaling, scaling, scaling) + new Vector3(x, y, z) * scaling;
                     }
                 }
             }

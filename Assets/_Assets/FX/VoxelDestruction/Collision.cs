@@ -12,7 +12,7 @@ public class Collision : MonoBehaviour
     public float despawnTimer;
     private Transform rootParent;
     [SerializeField]
-    private DESTROY destroyInstance;
+    private PixelMonster destroyInstance;
 
 
 
@@ -39,8 +39,8 @@ public class Collision : MonoBehaviour
             if (hitCol.GetComponent<Rigidbody>() == null)
             {
                 rootParent = hitCol.GetComponent<Transform>().root;
-                if(rootParent.GetComponent<DESTROY>() != null)
-                    rootParent.GetComponent<DESTROY>().hitProjectiles += 1;
+                if(rootParent.GetComponent<PixelMonster>() != null)
+                    rootParent.GetComponent<PixelMonster>().hitProjectiles += 1;
                 hitCol.GetComponent<MeshRenderer>().enabled = true;
                 hitCol.gameObject.AddComponent<Rigidbody>();
                 hitCol.GetComponent<Rigidbody>().mass = 500;
