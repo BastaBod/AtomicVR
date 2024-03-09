@@ -5,9 +5,12 @@ using Oculus.Interaction;
 
 public class AutoReturn : MonoBehaviour
 {
-    public Grabbable me;
+    public Grabbable grab;
     public GameObject origin;
     public float timeOut;
+    public float returnSpeed;
+
+
 
     private bool isOrigin;
     private float chrono;
@@ -17,7 +20,8 @@ public class AutoReturn : MonoBehaviour
     void Start()
     {
         ResetPos();
-
+        isOrigin = false;
+        chrono = 0;
     }
 
     // Update is called once per frame
@@ -26,19 +30,26 @@ public class AutoReturn : MonoBehaviour
         if (!isOrigin)
         {
             chrono -= Time.deltaTime;
-            if (chrono < 0)
-                ResetPos();
+            if (chrono <= 0)
+            {
+                isOrigin = true;
+                StartCoroutine(EaseInPos(transform.position, transform.rotation));
+            }
         }
 
-        //if (Vector3.Distance(transform.position, origin.transform.position) > 1)
-        //    ResetPos();
-
-        if (me.GrabPoints.Count >= 1)
+        if (grab.GrabPoints.Count >= 1)
         {
             grabbed = true;
         }
 
-        if (me.GrabPoints.Count < 1 && grabbed)
+        if (grab.GrabPoints.Count < 1 && grabbed)
+        {
+            grabbed = false;
+            isOrigin = false;
+            chrono = timeOut;
+        }
+
+        if (Input.GetKeyDown("o"))
         {
             grabbed = false;
             isOrigin = false;
@@ -50,8 +61,26 @@ public class AutoReturn : MonoBehaviour
     private void ResetPos()
     {
         //transform.parent.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        transform.parent.position = origin.transform.position;
-        transform.parent.rotation = origin.transform.rotation;
+        transform.position = origin.transform.position;
+        transform.rotation = origin.transform.rotation;
         isOrigin = true;
+    }
+
+
+    IEnumerator EaseInPos(Vector3 pos, Quaternion rot)
+    {
+        float t = 0;
+
+        while(t < 1)
+        {
+            t += Time.deltaTime * returnSpeed;
+            if (t > 1)
+                t = 1;
+
+            transform.position = Vector3.Lerp(pos, origin.transform.position, t);
+            transform.rotation = Quaternion.Lerp(rot, origin.transform.rotation, t);
+            yield return 0;
+        }
+        yield return null;
     }
 }

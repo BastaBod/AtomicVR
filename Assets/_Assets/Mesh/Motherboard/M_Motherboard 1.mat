@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Motherboard 1
-  m_Shader: {fileID: -6465566751694194690, guid: 96da5ae22cead684a869d4fc36dcabfa,
+  m_Shader: {fileID: -6465566751694194690, guid: a77e86a0ad76ec4438fe1da5ea757b1f,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -101,6 +101,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: d1d5123de21ee194db43a534bc0a0df6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_6c6aa433189c402eba5d962b4559a0ab_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: fabb8520904f9d5469ce8f3d320b0295, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -127,7 +131,7 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
-    - _CutOffHeight: 0.09
+    - _CutOffHeight: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
