@@ -24,7 +24,7 @@ public class Lamagie : MonoBehaviour
     [Header("o - receive shield")]
     [Header("p - receive cursor")]
 
-    public bool finListeDesControlles;
+    public bool activateCheatKeys;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,10 @@ public class Lamagie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!activateCheatKeys)
+            return;
+
+
         if (Input.GetKeyDown("1"))
             SynchronizeManager.RaiseSyncRequest("2");//connect falcon
 

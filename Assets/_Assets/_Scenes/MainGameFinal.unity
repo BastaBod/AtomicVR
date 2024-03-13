@@ -99649,7 +99649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d09c51e3f750c469c0f67e0c84d046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finListeDesControlles: 0
+  activateCheatKeys: 1
 --- !u!1 &1558580977
 GameObject:
   m_ObjectHideFlags: 0
