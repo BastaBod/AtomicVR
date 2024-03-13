@@ -91,7 +91,7 @@ public class TestSync : MonoBehaviour
                 GiveItem4.Invoke(3);
                 break;
             case 25: // pc receive item 5
-                GiveItem4.Invoke(4);
+                GiveItem5.Invoke(4);
                 break;
         }
     }
