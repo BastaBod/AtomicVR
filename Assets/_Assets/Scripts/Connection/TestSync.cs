@@ -52,7 +52,7 @@ public class TestSync : MonoBehaviour
                 }
                 if (int.TryParse(msg.Split(';')[1], out x) && int.TryParse(msg.Split(';')[2], out y))
                 {
-                    falconCursorPos.Invoke(new Vector3(x,y, -1));
+                    falconCursorPos.Invoke(new Vector3(x,y*2, -1));
                     Debug.Log("Cursor goes to x : " + new Vector3(x,y, 0));
                 }
                 break;

@@ -39,19 +39,22 @@ public class Lamagie : MonoBehaviour
             return;
 
 
-        if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
             SynchronizeManager.RaiseSyncRequest("2");//connect falcon
 
-        if (Input.GetKeyDown("2"))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
             SynchronizeManager.RaiseSyncRequest("3");//disconnect falcon
 
 
-        if (Input.GetKeyDown("4"))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
             SynchronizeManager.RaiseSyncRequest("11");//receive 1
-        if (Input.GetKeyDown("5"))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
             SynchronizeManager.RaiseSyncRequest("12");//receive 2
-        if (Input.GetKeyDown("6"))
+        if (Input.GetKeyDown(KeyCode.Alpha6))
             SynchronizeManager.RaiseSyncRequest("13");//receive 3
+
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+            SynchronizeManager.RaiseSyncRequest("14");//receive 4
 
         if (Input.GetKeyDown("y"))
             SynchronizeManager.RaiseSyncRequest("21");//receive directory

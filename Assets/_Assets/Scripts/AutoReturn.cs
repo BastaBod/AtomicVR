@@ -27,20 +27,8 @@ public class AutoReturn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isOrigin)
-        {
-            chrono -= Time.deltaTime;
-            if (chrono <= 0)
-            {
-                isOrigin = true;
-                StartCoroutine(EaseInPos(transform.position, transform.rotation));
-            }
-        }
-
         if (grab.GrabPoints.Count >= 1)
-        {
             grabbed = true;
-        }
 
         if (grab.GrabPoints.Count < 1 && grabbed)
         {
@@ -48,6 +36,20 @@ public class AutoReturn : MonoBehaviour
             isOrigin = false;
             chrono = timeOut;
         }
+
+        if (!isOrigin)
+        {
+            chrono -= Time.deltaTime;
+            if (chrono <= 0)
+            {
+                isOrigin = true;
+                if (grabbed)
+                    return;
+                StartCoroutine(EaseInPos(transform.position, transform.rotation));
+            }
+        }
+
+        
 
         if (Input.GetKeyDown("o"))
         {
