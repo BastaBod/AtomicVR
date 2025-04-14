@@ -6,11 +6,11 @@ Atomic VR is a student project made by 5 Master 1 & 2 in roughtly 2 weeks.
 It is an asymetric escape game wwhere two poeple are in cooperation (one in VR with this application) and one on PC.
 One of the main feature is about the ability for the VR player to draw "in real life" by controlling the Novint falcon to leave notes for the other user as there are no other way of comunication.
 
-# 🕶️ VR Escape — Dual-Player VR Experience with Novint Falcon Integration
+# 🕶️ Atom VR — Dual-Player VR/PC Experience with Novint Falcon Integration
 
 ## 📖 Project Overview
 
-**VR Escape** is a unique two-player virtual reality experience that combines immersive gameplay with vintage haptic technology. This repository contains the **VR application** component, which connects to both a **PC interface application** and a **Novint Falcon driver application** to complete the full interactive setup.
+Project Atom is a unique two-player virtual reality experience that combines immersive gameplay with vintage haptic technology. This repository contains the **VR application** component, which connects to both a **PC interface application** and a **Novint Falcon driver application** to complete the full interactive setup.
 
 In the game, one player is trapped inside a virtual PC and must communicate with their partner—who uses a simulated PC interface—to find a way out. The only way for the imprisoned player to interact with the real world is through a **Novint Falcon**, a now-obsolete haptic device. Despite its age, the Falcon was successfully revived and repurposed to allow paper-based drawing through force feedback control in VR.
 
