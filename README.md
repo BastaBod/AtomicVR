@@ -10,7 +10,7 @@ This project was made in roughly 3 weeks by a team of 6 students (during year tw
 
 ## 🖼️ Preview
 
-![VR Escape Demo](link-to-your-image-or-gif)
+![VR Escape Demo](previsu.png)
 > _Screenshot of the VR environment showcasing the tablet used to draw._
 
 
